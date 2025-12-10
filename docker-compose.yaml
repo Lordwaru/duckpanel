@@ -10,6 +10,9 @@ services:
         - ./conf:/etc/caddy
         - caddy_data:/data
         - caddy_config:/config
+        - public:/var/www/html/
+      depends_on:
+        - php-fpm
   database:
     image: mariadb
     restart: always
