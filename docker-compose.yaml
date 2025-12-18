@@ -13,13 +13,15 @@ services:
         - public:/var/www/html/
       depends_on:
         - php-fpm
+      network:
+        - host
   database:
     image: mariadb
     restart: always
     environment:
       MYSQL_DATABASE: panel
-      MYSQL_USER: pterodactyl
-      MYSQL_PASSWORD: pteropassword
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     volumes:
       - db:/var/lib/mysql
@@ -39,8 +41,8 @@ services:
       DB_HOST: database
       DB_PORT: 3306
       DB_DATABASE: panel
-      DB_USERNAME: pterodactyl
-      DB_PASSWORD: pteropassword
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
 
 volumes:
   public:
