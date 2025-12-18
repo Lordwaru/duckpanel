@@ -13,8 +13,6 @@ services:
         - public:/var/www/html/
       depends_on:
         - php-fpm
-      network:
-        - host
   database:
     image: mariadb
     restart: always
